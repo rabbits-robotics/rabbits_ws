@@ -26,7 +26,7 @@ USER ubuntu
 RUN mkdir -m 0700 -p /tmp/runtime-ubuntu
 RUN rosdep update \
     && echo "source /opt/ros/jazzy/setup.bash" >> ~/.bashrc \
-    && echo "[ -f ~/attracts_ws/install/setup.bash ] && source ~/attracts_ws/install/setup.bash" >> ~/.bashrc \
+    && echo "[ -f ~/rabbits_ws/install/setup.bash ] && source ~/rabbits_ws/install/setup.bash" >> ~/.bashrc \
     && echo "source /usr/share/colcon_argcomplete/hook/colcon-argcomplete.bash" >> ~/.bashrc
 
-WORKDIR /home/ubuntu/attracts_ws
+WORKDIR /home/ubuntu/rabbits_ws

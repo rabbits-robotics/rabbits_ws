@@ -1,19 +1,19 @@
 repositories:
-  attracts_bridge:
+  rabbits_bridge:
     type: git
-    url: https://github.com/rabbits-robotics/attracts_bridge.git
+    url: https://github.com/rabbits-robotics/rabbits_bridge.git
     version: main
-  attracts_description:
+  rabbits_description:
     type: git
-    url: https://github.com/rabbits-robotics/attracts_description.git
+    url: https://github.com/rabbits-robotics/rabbits_description.git
     version: main
-  attracts_interface:
+  rabbits_interface:
     type: git
-    url: https://github.com/rabbits-robotics/attracts_interface.git
+    url: https://github.com/rabbits-robotics/rabbits_interface.git
     version: main
-  attracts_msgs:
+  rabbits_msgs:
     type: git
-    url: https://github.com/rabbits-robotics/attracts_msgs.git
+    url: https://github.com/rabbits-robotics/rabbits_msgs.git
     version: main
   rabcl:
     type: git

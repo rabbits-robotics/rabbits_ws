@@ -1,7 +1,7 @@
-# attracts_ws
+# rabbits_ws
 ATTRACTS向け開発ロボット用のROS2パッケージ群の環境構築用リポジトリ
 
-[![CI](https://github.com/rabbits-robotics/attracts_ws/actions/workflows/ci.yml/badge.svg)](https://github.com/rabbits-robotics/attracts_ws/actions/workflows/ci.yml)
+[![CI](https://github.com/rabbits-robotics/rabbits_ws/actions/workflows/ci.yml/badge.svg)](https://github.com/rabbits-robotics/rabbits_ws/actions/workflows/ci.yml)
 
 ## 事前準備
 ### RaspberryPi5+Ubuntu24.04+m.2SSDBoot
@@ -23,8 +23,8 @@ ATTRACTS向け開発ロボット用のROS2パッケージ群の環境構築用�
 やったら追記、誰かやったら追記して欲しい
 
 ## 使い方
-- `git clone git@github.com:rabbits-robotics/attracts_ws.git`
-- `cd attracts_ws`
+- `git clone git@github.com:rabbits-robotics/rabbits_ws.git`
+- `cd rabbits_ws`
 - `vcs import src < default_package_list.repos`
 - `colcon build`
 
@@ -49,7 +49,7 @@ Docker Desktop はホスト側の WSLg を `/run/desktop/mnt/host/wslg` に見�
 
 ```bash
 # ロボットモデルを rviz2 で表示（joint_state_publisher_gui 付き）
-ros2 launch attracts_description display.launch.py use_gui:=true
+ros2 launch rabbits_description display.launch.py use_gui:=true
 
 # rviz2 だけ
 rviz2
