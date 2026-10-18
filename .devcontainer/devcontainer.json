@@ -1,0 +1,33 @@
+{
+  "name": "attracts_ws (ROS 2 Jazzy)",
+  "build": {
+    "dockerfile": "Dockerfile"
+  },
+  "workspaceFolder": "/home/ubuntu/attracts_ws",
+  "workspaceMount": "source=${localWorkspaceFolder},target=/home/ubuntu/attracts_ws,type=bind",
+  "remoteUser": "ubuntu",
+  "containerEnv": {
+    "DISPLAY": ":0",
+    "XDG_RUNTIME_DIR": "/tmp/runtime-ubuntu",
+    "PULSE_SERVER": "/mnt/wslg/PulseServer",
+    "LIBGL_ALWAYS_SOFTWARE": "1"
+  },
+  "mounts": [
+    "source=/run/desktop/mnt/host/wslg/.X11-unix,target=/tmp/.X11-unix,type=bind",
+    "source=/run/desktop/mnt/host/wslg,target=/mnt/wslg,type=bind"
+  ],
+  "postCreateCommand": "(vcs import --skip-existing src < default_package_list.repos || vcs import --skip-existing src < ci.repos) && sudo apt-get update && rosdep install --from-paths src --ignore-src -r -y",
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-vscode.cpptools",
+        "ms-vscode.cmake-tools",
+        "ms-python.python",
+        "ms-iot.vscode-ros"
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      }
+    }
+  }
+}

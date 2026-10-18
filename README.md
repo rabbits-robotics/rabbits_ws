@@ -23,10 +23,45 @@ ATTRACTS向け開発ロボット用のROS2パッケージ群の環境構築用�
 やったら追記、誰かやったら追記して欲しい
 
 ## 使い方
-- `git clone git@github.com:robot-trainee/attracts_ws.git`
+- `git clone git@github.com:rabbits-robotics/attracts_ws.git`
 - `cd attracts_ws`
 - `vcs import src < default_package_list.repos`
 - `colcon build`
+
+## 開発環境（Dev Container）
+
+Windows / macOS / Linux のどれでも、Docker と VS Code があれば CI と同じ環境（`ros:jazzy-ros-base` + colcon / rosdep / vcstool / gtest / lint）で開発できます。
+
+### 準備（Windows）
+1. 管理者の PowerShell で `wsl --install -d Ubuntu-24.04` を実行し、再起動する
+2. [Docker Desktop](https://www.docker.com/products/docker-desktop/) をインストールし、Settings → Resources → WSL integration で Ubuntu-24.04 を有効にする
+3. VS Code に拡張機能 [Dev Containers](https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers) を入れる
+4. （任意）コンテナ内から push したい場合は、Windows の OpenSSH Authentication Agent を起動して `ssh-add` で鍵を登録しておく（Dev Containers がエージェントをコンテナへ転送する）
+
+### 使い方
+1. このリポジトリを VS Code で開き、コマンドパレットから **Dev Containers: Reopen in Container** を選ぶ
+2. 初回はイメージのビルド後に `vcs import src < default_package_list.repos` と `rosdep install` が自動で走る。SSH 鍵が無ければ `ci.repos`（HTTPS）に自動で切り替わる。`src/` にすでにあるパッケージはそのまま使う
+3. ターミナルで `colcon build` → `colcon test` → `colcon test-result --verbose`
+
+### GUI（rviz2 など）
+
+Docker Desktop はホスト側の WSLg を `/run/desktop/mnt/host/wslg` に見せているので、devcontainer.json でそれをコンテナにマウントし、`DISPLAY=:0` で X11 として表示します。描画はソフトウェア OpenGL です（`LIBGL_ALWAYS_SOFTWARE=1`）。
+
+```bash
+# ロボットモデルを rviz2 で表示（joint_state_publisher_gui 付き）
+ros2 launch attracts_description display.launch.py use_gui:=true
+
+# rviz2 だけ
+rviz2
+```
+
+通常の `ros2 run` / `ros2 launch` / `ros2 topic` はコンテナ内のターミナルでそのまま使えます。`colcon build` のあとは新しいターミナルを開くか `source install/setup.bash` を実行してください。
+
+### 注意
+
+- HTTPS で取得したパッケージはそのままでは push できない。push するなら SSH 鍵を転送した上で `git remote set-url origin git@github.com:rabbits-robotics/<パッケージ名>.git` に切り替える
+- Linux ホストで使う場合は、devcontainer.json の WSLg 用マウントをホストの `/tmp/.X11-unix` に差し替える
+- Jetson 実機との DDS 通信や USB シリアルの接続は Docker Desktop では制約があるため、実機側で行う
 
 ## その他
 - このリポジトリで使っている`vcs`について
