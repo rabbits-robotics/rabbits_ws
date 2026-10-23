@@ -57,11 +57,22 @@ rviz2
 
 通常の `ros2 run` / `ros2 launch` / `ros2 topic` はコンテナ内のターミナルでそのまま使えます。`colcon build` のあとは新しいターミナルを開くか `source install/setup.bash` を実行してください。
 
+### USB 機器（シリアル変換機、ゲームパッド）をコンテナから使う（Windows）
+
+Docker Desktop は WSL2 の VM で動くので、USB 機器を [usbipd-win](https://github.com/dorssel/usbipd-win) で WSL2 に渡すとコンテナからも見える。devcontainer.json は `--privileged` と `/dev` のマウントで機器を見せている。
+
+1. 管理者 PowerShell で `winget install --interactive --exact dorssel.usbipd-win`。usbipd が機器を渡す先として WSL の配布が 1 つ要る（`wsl --install -d Ubuntu`。ROS 2 はコンテナ内で動かすので Ubuntu 側には何も入れない）
+2. 機器を挿して `usbipd list` で BUSID を確認し、管理者 PowerShell で `usbipd bind --busid <BUSID>` → `usbipd attach --wsl --busid <BUSID>`（attach は挿し直すたびに必要）
+3. `wsl -d Ubuntu -e ls -l /dev/ttyUSB0 /dev/input/js0` で見えることを確認してから、Dev Container を開く（開いていた場合は Rebuild / Reopen）
+4. コンテナ内で `ros2 launch rabbits_bridge robot_bridge.launch.py config:=...`（YAML の `device` を `/dev/ttyUSB0` に）と `ros2 launch rabbits_interface gamepad.launch.py`
+
+WSL2 のカーネル（6.x）には FTDI / CP210x / CH341 / PL2303 と joydev のドライバが入っている。シリアル変換機は 3.3 V のものを使う（ESP32-P4 は 5 V 非対応）。
+
 ### 注意
 
 - HTTPS で取得したパッケージはそのままでは push できない。push するなら SSH 鍵を転送した上で `git remote set-url origin git@github.com:rabbits-robotics/<パッケージ名>.git` に切り替える
-- Linux ホストで使う場合は、devcontainer.json の WSLg 用マウントをホストの `/tmp/.X11-unix` に差し替える
-- Jetson 実機との DDS 通信や USB シリアルの接続は Docker Desktop では制約があるため、実機側で行う
+- Linux ホストで使う場合は、devcontainer.json の WSLg 用マウントをホストの `/tmp/.X11-unix` に差し替え、`--privileged` は外して `--device` で必要な機器だけ渡す
+- Jetson 実機との DDS 通信は Docker Desktop では制約があるため、実機側で行う
 
 ## その他
 - このリポジトリで使っている`vcs`について

@@ -6,6 +6,10 @@
   "workspaceFolder": "/home/ubuntu/rabbits_ws",
   "workspaceMount": "source=${localWorkspaceFolder},target=/home/ubuntu/rabbits_ws,type=bind",
   "remoteUser": "ubuntu",
+  "runArgs": [
+    "--privileged",
+    "--volume=/dev:/dev"
+  ],
   "containerEnv": {
     "DISPLAY": ":0",
     "XDG_RUNTIME_DIR": "/tmp/runtime-ubuntu",
