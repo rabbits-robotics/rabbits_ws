@@ -1,4 +1,8 @@
 repositories:
+  rabbits_bringup:
+    type: git
+    url: https://github.com/rabbits-robotics/rabbits_bringup.git
+    version: main
   rabbits_bridge:
     type: git
     url: https://github.com/rabbits-robotics/rabbits_bridge.git
@@ -14,6 +18,10 @@ repositories:
   rabbits_msgs:
     type: git
     url: https://github.com/rabbits-robotics/rabbits_msgs.git
+    version: main
+  rabbits_sim:
+    type: git
+    url: https://github.com/rabbits-robotics/rabbits_sim.git
     version: main
   rabcl:
     type: git
