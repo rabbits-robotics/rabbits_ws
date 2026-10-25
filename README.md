@@ -62,7 +62,7 @@ rviz2
 Docker Desktop は WSL2 の VM で動くので、USB 機器を [usbipd-win](https://github.com/dorssel/usbipd-win) で WSL2 に渡すとコンテナからも見える。devcontainer.json は `--privileged` と `/dev` のマウントで機器を見せている。
 
 1. 管理者 PowerShell で `winget install --interactive --exact dorssel.usbipd-win`。usbipd が機器を渡す先として WSL の配布が 1 つ要る（`wsl --install -d Ubuntu`。ROS 2 はコンテナ内で動かすので Ubuntu 側には何も入れない）
-2. 機器を挿して `usbipd list` で BUSID を確認し、管理者 PowerShell で `usbipd bind --busid <BUSID>` → `usbipd attach --wsl --busid <BUSID>`（attach は挿し直すたびに必要）
+2. 機器を挿して `usbipd list` で BUSID を確認し、管理者 PowerShell で `usbipd bind --busid <BUSID>` → `usbipd attach --wsl --busid <BUSID>`（attach は挿し直すたびに必要。`--auto-attach` を付けるとそのウィンドウを占有して挿し直しに自動で追従する。attach には WSL の配布が 1 つ動いている必要があるので、先に `wsl -d Ubuntu` を開いておく）
 3. `wsl -d Ubuntu -e ls -l /dev/ttyUSB0 /dev/input/js0` で見えることを確認してから、Dev Container を開く（開いていた場合は Rebuild / Reopen）
 4. コンテナ内で `ros2 launch rabbits_bridge robot_bridge.launch.py config:=...`（YAML の `device` を `/dev/ttyUSB0` に）と `ros2 launch rabbits_interface gamepad.launch.py`
 

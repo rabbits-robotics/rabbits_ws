@@ -20,7 +20,7 @@
     "source=/run/desktop/mnt/host/wslg/.X11-unix,target=/tmp/.X11-unix,type=bind",
     "source=/run/desktop/mnt/host/wslg,target=/mnt/wslg,type=bind"
   ],
-  "postCreateCommand": "(vcs import --skip-existing src < default_package_list.repos || vcs import --skip-existing src < ci.repos) && sudo apt-get update && rosdep install --from-paths src --ignore-src -r -y",
+  "postCreateCommand": "git config --global --add safe.directory '*' && (vcs import --skip-existing src < default_package_list.repos || vcs import --skip-existing src < ci.repos) && sudo apt-get update && rosdep install --from-paths src --ignore-src -r -y",
   "customizations": {
     "vscode": {
       "extensions": [
