@@ -11,6 +11,10 @@ repositories:
     type: git
     url: git@github.com:rabbits-robotics/rabbits_description.git
     version: main
+  rabbits_gui:
+    type: git
+    url: git@github.com:rabbits-robotics/rabbits_gui.git
+    version: main
   rabbits_interface:
     type: git
     url: git@github.com:rabbits-robotics/rabbits_interface.git
