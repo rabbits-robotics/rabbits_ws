@@ -72,7 +72,7 @@ WSL2 のカーネル（6.x）には FTDI / CP210x / CH341 / PL2303 と joydev �
 
 - HTTPS で取得したパッケージはそのままでは push できない。push するなら SSH 鍵を転送した上で `git remote set-url origin git@github.com:rabbits-robotics/<パッケージ名>.git` に切り替える
 - Linux ホストで使う場合は、devcontainer.json の WSLg 用マウントをホストの `/tmp/.X11-unix` に差し替え、`--privileged` は外して `--device` で必要な機器だけ渡す
-- Jetson 実機との DDS 通信は Docker Desktop では制約があるため、実機側で行う
+- 実機（上位 PC）との DDS 通信は Docker Desktop では制約があるため、実機側で行う
 
 ## その他
 - このリポジトリで使っている`vcs`について
