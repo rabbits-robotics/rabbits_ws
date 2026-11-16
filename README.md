@@ -4,6 +4,8 @@ ATTRACTS向け開発ロボット用のROS2パッケージ群の環境構築用�
 [![CI](https://github.com/rabbits-robotics/rabbits_ws/actions/workflows/ci.yml/badge.svg)](https://github.com/rabbits-robotics/rabbits_ws/actions/workflows/ci.yml)
 
 ## 事前準備
+gamma の Pi 5（ワークスペース、ゲームパッドの Bluetooth、自動起動の systemd サービス）の手順は [robot_ws/gamma](https://github.com/rabbits-robotics/gamma) の README「環境構築（Raspberry Pi 5 側）」にまとめてある。以下は OS と ROS 2 を入れるときの参考リンク。
+
 ### RaspberryPi5+Ubuntu24.04+m.2SSDBoot
 - これを参照
   - https://raspida.com/how2boot-nvme-ubuntu/
