@@ -1,0 +1,29 @@
+# beta（2026 年の ATTRACTS 出場機）の Raspberry Pi 5 に入っていた最終状態（2026-11-16 に保全）。
+# 当時のパッケージ名は attracts_*（attracts_ws）。リポジトリは rabbits_* に改名されて履歴が続いている。
+# rabbits_bridge / rabbits_interface は試合当日の未コミット調整をブランチ beta-pi-final にコミットしたもの。
+# 使い方: vcs import src < beta.repos（パッケージ名は attracts_* のままなので、gamma の rabbits_* と同じ src には置かない）
+repositories:
+  attracts_bridge:
+    type: git
+    url: git@github.com:rabbits-robotics/rabbits_bridge.git
+    version: 8f350dda2373a0584587a4b3d026b81817f425bb
+  attracts_description:
+    type: git
+    url: git@github.com:rabbits-robotics/rabbits_description.git
+    version: 4040d8ef456f910a5be518068aac0c91d8fc84a5
+  attracts_interface:
+    type: git
+    url: git@github.com:rabbits-robotics/rabbits_interface.git
+    version: a2d8a46a016669b3780e7fd461b241d4be9a3a52
+  attracts_msgs:
+    type: git
+    url: git@github.com:rabbits-robotics/rabbits_msgs.git
+    version: 4e4d52a45cb0f24eed4119319df4478af06590e5
+  rabcl:
+    type: git
+    url: git@github.com:rabbits-robotics/rabcl.git
+    version: 979e2399c8cc8d12c388d5f74e8c7c85bc1564fb
+  rabcl_ros2:
+    type: git
+    url: git@github.com:rabbits-robotics/rabcl_ros2.git
+    version: 85bc1f908f88a66af385f70c11e52c22458599a3

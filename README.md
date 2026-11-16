@@ -28,6 +28,8 @@ ATTRACTS向け開発ロボット用のROS2パッケージ群の環境構築用�
 - `vcs import src < default_package_list.repos`
 - `colcon build`
 
+repos ファイル: `default_package_list.repos`（gamma の開発、main 追従）、`ci.repos`（同じ内容の HTTPS 版）、`beta.repos`（beta の Pi 5 に入っていた最終状態をコミット固定。パッケージ名が attracts_* なので gamma の `src` には混ぜず、別のワークスペースに import する。記録は [robot_ws/beta](https://github.com/rabbits-robotics/beta) の README）
+
 ## 開発環境（Dev Container）
 
 Windows / macOS / Linux のどれでも、Docker と VS Code があれば CI と同じ環境（`ros:jazzy-ros-base` + colcon / rosdep / vcstool / gtest / lint）で開発できます。
